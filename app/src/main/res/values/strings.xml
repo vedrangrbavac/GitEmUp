@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">GitEmUp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    //errors
+    <string name="network_error">Network error</string>
+    <string name="server_error">Server Error</string>
+    <string name="unauthorized_error">Unauthorized</string>
+    <string name="bad_request_error">Bad Request</string>
+    <string name="not_found_error">Not found</string>
+    <string name="not_allowed_error">Not allowed</string>
+    <string name="timeout_error">Timeout</string>
+    <string name="unknown_error">Unknown error</string>
+
 </resources>
