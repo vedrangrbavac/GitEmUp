@@ -13,5 +13,18 @@
     <string name="not_allowed_error">Not allowed</string>
     <string name="timeout_error">Timeout</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="rate_limit_exceeded_error">Rate limit exceeded</string>
+
+
+
+
+    <string name="insert_query">Insert query</string>
+    <string name="search">Search</string>
+    <string name="search_repositories">Search repositories</string>
+    <string-array name="sort">
+        <item>By stars</item>
+        <item>By forks</item>
+        <item>By updated</item>
+    </string-array>
 
 </resources>

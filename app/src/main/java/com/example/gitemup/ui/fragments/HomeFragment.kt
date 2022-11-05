@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import com.example.gitemup.R
 import com.example.gitemup.common.base.BaseFragment
+import com.example.gitemup.common.extensions.snackbar
 import com.example.gitemup.databinding.FragmentHomeBinding
 import com.example.gitemup.ui.adapters.RepositoriesRecyclerViewAdapter
 import com.example.gitemup.viewmodels.RepositoryViewModel
@@ -41,15 +44,24 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Timber.d("welcome")
 
         binding.rvRepositories.adapter = repositoriesRecyclerViewAdapter
 
 
-        binding.btnGetRepos.setOnClickListener {
-            viewModel.callGetRepositories("GitEmUp+in:name")
+  // "GitEmUp+in:name"
+
+        val spinner = binding.spSort
+        val spinnerAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.sort, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+        spinner.adapter = spinnerAdapter
+
+
+
+        viewModel.selectedItemPosition.observe(viewLifecycleOwner){
+            it?.let {
+                Timber.d("Item position --> $it")
+            }
         }
-
-
 
         viewModel.repositories.observe(viewLifecycleOwner) {
             it?.let {

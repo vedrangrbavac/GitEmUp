@@ -23,6 +23,7 @@ object ErrorHandler {
         is NotFoundError -> R.string.not_found_error
         is MethodNotAllowedError -> R.string.not_allowed_error
         is TimeoutError -> R.string.timeout_error
+        is RateLimitExceeded -> R.string.rate_limit_exceeded_error
         else -> R.string.unknown_error
     }
 
@@ -36,7 +37,7 @@ object ErrorHandler {
                     in 500..599 -> ServerError(response.message())
                     400, 423 -> BadRequestError(response.message())
                     401 -> UnauthorizedError()
-                    403 -> ForbiddenActionError()
+                    403 -> RateLimitExceeded()
                     404 -> NotFoundError()
                     405 -> MethodNotAllowedError()
                     408 -> TimeoutError()
@@ -49,7 +50,7 @@ object ErrorHandler {
     class ServerError(message: String? = null) : Exception(message)
     class UnauthorizedError : Exception()
     class BadRequestError(message: String?) : Exception(message)
-    class ForbiddenActionError : Exception()
+    class RateLimitExceeded : Exception()
     class NotFoundError : Exception()
     class MethodNotAllowedError : Exception()
     class TimeoutError : Exception()
