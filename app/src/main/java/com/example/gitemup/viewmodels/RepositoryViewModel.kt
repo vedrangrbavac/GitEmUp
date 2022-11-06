@@ -36,7 +36,7 @@ class RepositoryViewModel(private val repository: RepositoryRepository) : BaseVi
                     repositories.value
                 } else {
                     repositories.value?.filter { item ->
-                        item.fullName.contains(search)
+                        item.fullName.lowercase().contains(search)
                     }
                 }
                 val sortedValue = when (selectedPosition) {
