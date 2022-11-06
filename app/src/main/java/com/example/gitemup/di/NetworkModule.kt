@@ -1,7 +1,9 @@
 package com.example.gitemup.di
 
 import com.example.gitemup.config.BASE_URL
+import com.example.gitemup.config.DATETIME_ISO8601_FORMAT
 import com.example.gitemup.data.network.API
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,9 +42,10 @@ val networkModule = module {
 
 
     single {
+        val gson = GsonBuilder().setDateFormat(DATETIME_ISO8601_FORMAT).create()
         Retrofit.Builder().client(get())
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
     }

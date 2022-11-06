@@ -1,6 +1,7 @@
 package com.example.gitemup.data.models.domain
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class Item(
     val id: Int,
@@ -21,5 +22,7 @@ data class Item(
     @SerializedName(value = "watchers_count")
     val numberOfWatchers:Int,
     @SerializedName(value = "open_issues_count")
-    val numberOfIssues: Int
+    val numberOfIssues: Int,
+    @SerializedName(value = "updated_at")
+    val updated: Date
 )

@@ -42,6 +42,7 @@ class RepositoryViewModel(private val repository: RepositoryRepository) : BaseVi
                 val sortedValue = when (selectedPosition) {
                     0 -> searchedValue?.sortedByDescending { it.numberOfStarts }
                     1 -> searchedValue?.sortedByDescending { it.numberOfForks }
+                    2 -> searchedValue?.sortedByDescending { it.updated }
                     else -> searchedValue?.sortedBy { it.name }
                 }
                 value = sortedValue

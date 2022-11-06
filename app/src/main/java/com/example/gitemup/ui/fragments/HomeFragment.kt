@@ -16,6 +16,9 @@ import com.example.gitemup.ui.adapters.RepositoriesRecyclerViewAdapter
 import com.example.gitemup.viewmodels.RepositoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.Date
 
 class HomeFragment : BaseFragment<RepositoryViewModel>() {
 
@@ -44,7 +47,6 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("welcome")
 
         binding.rvRepositories.adapter = repositoriesRecyclerViewAdapter
 
@@ -54,20 +56,6 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
         val spinner = binding.spSort
         val spinnerAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.sort, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
-
-
-
-        viewModel.selectedItemPosition.observe(viewLifecycleOwner){
-            it?.let {
-                Timber.d("Item position --> $it")
-            }
-        }
-
-        viewModel.repositories.observe(viewLifecycleOwner) {
-            it?.let {
-                Timber.d(it.toString())
-            }
-        }
 
 
     }
