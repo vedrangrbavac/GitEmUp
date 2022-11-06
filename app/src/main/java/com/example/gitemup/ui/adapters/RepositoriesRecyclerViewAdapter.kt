@@ -39,6 +39,10 @@ class RepositoriesViewHolder(view: View) : AbstractViewHolder<Item>(view) {
         binding.repository = model
         binding.executePendingBindings()
 
+        binding.ivThumbnailOfAuthor.setOnClickListener {
+            listener?.invoke(model, position)
+        }
+
     }
 
 }

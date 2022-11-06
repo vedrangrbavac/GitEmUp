@@ -1,5 +1,7 @@
 package com.example.gitemup.ui.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +28,12 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val repositoriesRecyclerViewAdapter = RepositoriesRecyclerViewAdapter()
+    private val repositoriesRecyclerViewAdapter = RepositoriesRecyclerViewAdapter(itemClickListener = {item, _ ->
+        run {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.owner.url))
+            startActivity(intent)
+        }
+    })
 
 
     override fun onCreateView(
