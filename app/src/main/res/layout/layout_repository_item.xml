@@ -4,81 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="repository"
             type="com.example.gitemup.data.models.domain.Item" />
+
+        <import type="com.example.gitemup.common.extensions.DateExtKt" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/background_round">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvRepositoryName"
-            android:text="@{repository.name}"
-            tools:text="GitEmUp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvAuthorName"
-            android:text="@{repository.owner.username}"
-            tools:text="vedrangrbavac"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/tvRepositoryName"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvUpdated"
-            android:text="@{repository.updated.toString()}"
-            tools:text="12/12/1996 10:45:32"
-            app:layout_constraintTop_toBottomOf="@+id/tvAuthorName"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvNumberOfWatcher"
-            android:text="@{Integer.toString(repository.numberOfWatchers)}"
-            tools:text="0"
-            app:layout_constraintTop_toBottomOf="@+id/tvUpdated"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvNumberOfForks"
-            android:text="@{Integer.toString(repository.numberOfForks)}"
-            tools:text="0"
-            app:layout_constraintTop_toBottomOf="@+id/tvNumberOfWatcher"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvNumberOfIssues"
-            android:text="@{Integer.toString(repository.numberOfIssues)}"
-            tools:text="0"
-            app:layout_constraintTop_toBottomOf="@+id/tvNumberOfForks"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivThumbnailOfAuthor"
-            app:imageFromURL="@{repository.owner.avatarUrl}"
-            app:layout_constraintTop_toBottomOf="@+id/tvNumberOfIssues"
-            app:layout_constraintStart_toStartOf="parent" />
+            imageFromURL="@{repository.owner.avatarUrl}"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:civ_border_color="@color/quick_silver_color"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRepositoryName"
+            style="@style/TitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@{repository.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivThumbnailOfAuthor"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="GitEmUp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAuthorName"
+            style="@style/AppStandardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{repository.owner.username}"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/ivThumbnailOfAuthor"
+            app:layout_constraintTop_toBottomOf="@+id/tvRepositoryName"
+            tools:text="vedrangrbavac" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUpdated"
+            style="@style/AppStandardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{DateExtKt.fromDateToString(repository.updated)}"
+            app:layout_constraintStart_toEndOf="@+id/ivThumbnailOfAuthor"
+            app:layout_constraintTop_toBottomOf="@+id/tvAuthorName"
+            tools:text="12/12/1996 10:45:32" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llTitles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivThumbnailOfAuthor"
+            app:layout_constraintTop_toBottomOf="@+id/tvUpdated">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/EmphasizedAppStandardText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/stars"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/EmphasizedAppStandardText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/forks"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/EmphasizedAppStandardText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/watchers"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llValues"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="16dp"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivThumbnailOfAuthor"
+            app:layout_constraintTop_toBottomOf="@+id/llTitles">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNumberOfWatcher"
+                style="@style/AppStandardText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{Integer.toString(repository.numberOfWatchers)}"
+                tools:text="0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNumberOfForks"
+                style="@style/AppStandardText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{Integer.toString(repository.numberOfForks)}"
+                tools:text="0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNumberOfIssues"
+                style="@style/AppStandardText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{Integer.toString(repository.numberOfIssues)}"
+                tools:text="0" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

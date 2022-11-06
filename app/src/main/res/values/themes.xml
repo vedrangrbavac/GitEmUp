@@ -13,4 +13,25 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="AppStandardText">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/charcoal</item>
+    </style>
+
+    <style name="TitleText" parent="AppStandardText">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/quick_silver_color</item>
+        <item name="android:textSize">@dimen/text_size_extra_large</item>
+    </style>
+
+    <style name="SmallText" parent="AppStandardText">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="EmphasizedAppStandardText">
+        <item name="android:textColor">@color/mint_blue</item>
+    </style>
 </resources>
