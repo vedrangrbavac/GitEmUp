@@ -13,9 +13,8 @@ import com.example.gitemup.repositories.RepositoryRepository
 class RepositoryViewModel(private val repository: RepositoryRepository) : BaseViewModel() {
 
 
-    val repositories: MutableLiveData<List<Item>?> =
+    private val repositories: MutableLiveData<List<Item>?> =
         MutableLiveData(repository.repositories.value)
-
 
     val queryInput = MutableLiveData<String?>()
 
