@@ -6,21 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import com.example.gitemup.R
 import com.example.gitemup.common.base.BaseFragment
-import com.example.gitemup.common.extensions.snackbar
 import com.example.gitemup.databinding.FragmentHomeBinding
 import com.example.gitemup.ui.adapters.RepositoriesRecyclerViewAdapter
 import com.example.gitemup.viewmodels.RepositoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.util.Date
 
 class HomeFragment : BaseFragment<RepositoryViewModel>() {
 
@@ -28,12 +21,16 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val repositoriesRecyclerViewAdapter = RepositoriesRecyclerViewAdapter(itemClickListener = {item, _ ->
-        run {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.owner.url))
-            startActivity(intent)
-        }
-    })
+    private val repositoriesRecyclerViewAdapter =
+        RepositoriesRecyclerViewAdapter(listener = { item, _ ->
+            run {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.owner.url))
+                startActivity(intent)
+            }
+        },
+            sublistener = { item, _ ->
+                viewModel.navigateToRepositoryDetails(item)
+            })
 
 
     override fun onCreateView(
@@ -58,10 +55,14 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
         binding.rvRepositories.adapter = repositoriesRecyclerViewAdapter
 
 
-  // "GitEmUp+in:name"
+        // "GitEmUp+in:name"
 
         val spinner = binding.spSort
-        val spinnerAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.sort, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+        val spinnerAdapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.sort,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
+        )
         spinner.adapter = spinnerAdapter
 
 

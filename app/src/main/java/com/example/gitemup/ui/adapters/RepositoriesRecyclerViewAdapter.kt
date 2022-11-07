@@ -11,8 +11,8 @@ import com.example.gitemup.common.base.ItemClickListener
 import com.example.gitemup.data.models.domain.Item
 import com.example.gitemup.databinding.LayoutRepositoryItemBinding
 
-class RepositoriesRecyclerViewAdapter(itemClickListener: ((Item, Int) -> Unit)? = null) :
-    BaseAdapter<Item, RepositoriesViewHolder>(itemClickListener) {
+class RepositoriesRecyclerViewAdapter(private val listener: ((Item, Int) -> Unit)? = null, private val sublistener: ((Item, Int) -> Unit)? = null) :
+    BaseAdapter<Item, RepositoriesViewHolder>(listener) {
     override val itemLayout: Int = R.layout.layout_repository_item
 
     override fun createViewHolder(view: View): RepositoriesViewHolder {
@@ -23,6 +23,10 @@ class RepositoriesRecyclerViewAdapter(itemClickListener: ((Item, Int) -> Unit)? 
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
+    }
+
+    override fun onBindViewHolder(holder: RepositoriesViewHolder, position: Int) {
+        holder.bind(getItem(position), position, listener, sublistener)
     }
 }
 
@@ -36,6 +40,10 @@ class RepositoriesViewHolder(view: View) : AbstractViewHolder<Item>(view) {
 
 
     override fun bind(model: Item, position: Int, listener: ItemClickListener<Item>) {
+        // Created new bind function, because I need two click listeners.
+    }
+
+    fun bind(model: Item, position: Int, listener: ((Item, Int) -> Unit)? = null, sublistener: ((Item, Int) -> Unit)? = null){
         binding.repository = model
         binding.executePendingBindings()
 
@@ -43,6 +51,9 @@ class RepositoriesViewHolder(view: View) : AbstractViewHolder<Item>(view) {
             listener?.invoke(model, position)
         }
 
+        binding.clRepository.setOnClickListener {
+            sublistener?.invoke(model, position)
+        }
     }
 
 }

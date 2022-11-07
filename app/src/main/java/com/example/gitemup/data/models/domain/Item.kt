@@ -1,8 +1,11 @@
 package com.example.gitemup.data.models.domain
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
+@Parcelize
 data class Item(
     val id: Int,
     val name: String,
@@ -24,5 +27,9 @@ data class Item(
     @SerializedName(value = "open_issues_count")
     val numberOfIssues: Int,
     @SerializedName(value = "updated_at")
-    val updated: Date
-)
+    val updated: Date,
+    @SerializedName(value = "created_at")
+    val created: Date,
+    @SerializedName(value = "pushed_at")
+    val lastPush: Date
+): Parcelable

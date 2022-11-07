@@ -1,12 +1,14 @@
 package com.example.gitemup.viewmodels
 
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.gitemup.R
 import com.example.gitemup.common.base.BaseViewModel
 import com.example.gitemup.common.extensions.debounced
+import com.example.gitemup.config.REPOSITORY_BUNDLE
 import com.example.gitemup.data.models.domain.Item
 import com.example.gitemup.repositories.RepositoryRepository
 
@@ -57,6 +59,13 @@ class RepositoryViewModel(private val repository: RepositoryRepository) : BaseVi
         suspendCall {
             getRepositories(query)
         }
+    }
+
+    fun navigateToRepositoryDetails(repository: Item) {
+        navigate(
+            R.id.action_homeFragment_to_repositoryDetailFragment,
+            bundleOf(REPOSITORY_BUNDLE to repository)
+        )
     }
 
 

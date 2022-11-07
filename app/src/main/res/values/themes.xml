@@ -27,6 +27,10 @@
         <item name="android:textSize">@dimen/text_size_large</item>
     </style>
 
+    <style name="SuperLargeText" parent="TitleText">
+        <item name="android:textSize">@dimen/text_size_super_large</item>
+    </style>
+
     <style name="SmallText" parent="AppStandardText">
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>

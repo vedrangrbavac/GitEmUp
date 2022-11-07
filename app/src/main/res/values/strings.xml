@@ -16,8 +16,6 @@
     <string name="rate_limit_exceeded_error">Rate limit exceeded</string>
 
 
-
-
     <string name="insert_query">Insert query</string>
     <string name="search">Search</string>
     <string name="search_repositories">Search repositories</string>
@@ -26,6 +24,11 @@
     <string name="watchers">Watchers</string>
     <string name="issues">Issues</string>
     <string name="please_enter_valid_query">Please, enter valid query!</string>
+    <string name="author">Author:</string>
+    <string name="updated">Updated:</string>
+    <string name="created">Created:</string>
+    <string name="language">Language:</string>
+    <string name="last_push">Last push:</string>
     <string-array name="sort">
         <item>By stars</item>
         <item>By forks</item>
