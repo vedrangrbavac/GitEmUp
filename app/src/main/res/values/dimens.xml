@@ -13,4 +13,7 @@
     <dimen name="text_size_extra_large">24sp</dimen>
     <dimen name="text_size_super_large">32sp</dimen>
 
+
+    <dimen name="radius_button">10dp</dimen>
+
 </resources>

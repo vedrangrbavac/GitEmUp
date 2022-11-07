@@ -54,9 +54,10 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
 
         binding.rvRepositories.adapter = repositoriesRecyclerViewAdapter
 
+        initSortSpinner()
+    }
 
-        // "GitEmUp+in:name"
-
+    private fun initSortSpinner() {
         val spinner = binding.spSort
         val spinnerAdapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -64,8 +65,6 @@ class HomeFragment : BaseFragment<RepositoryViewModel>() {
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
         )
         spinner.adapter = spinnerAdapter
-
-
     }
 
 }

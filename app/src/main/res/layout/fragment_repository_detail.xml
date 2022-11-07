@@ -154,6 +154,31 @@
             app:layout_constraintTop_toBottomOf="@+id/tvLastPushTitle"
             tools:text="Kotlin" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/appButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:id="@+id/btnAuthorPage"
+                android:text="@string/visit_author_page"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/appButton"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:id="@+id/btnRepositoryPage"
+                android:text="@string/visit_author_page"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

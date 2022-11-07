@@ -29,6 +29,7 @@
     <string name="created">Created:</string>
     <string name="language">Language:</string>
     <string name="last_push">Last push:</string>
+    <string name="visit_author_page">Visit author page</string>
     <string-array name="sort">
         <item>By stars</item>
         <item>By forks</item>
