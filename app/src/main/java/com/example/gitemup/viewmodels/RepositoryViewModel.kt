@@ -5,6 +5,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.gitemup.BuildConfig
 import com.example.gitemup.R
 import com.example.gitemup.common.base.BaseViewModel
 import com.example.gitemup.common.extensions.debounced
@@ -62,10 +63,14 @@ class RepositoryViewModel(private val repository: RepositoryRepository) : BaseVi
     }
 
     fun navigateToRepositoryDetails(repository: Item) {
-        navigate(
-            R.id.action_homeFragment_to_repositoryDetailFragment,
-            bundleOf(REPOSITORY_BUNDLE to repository)
-        )
+        if (BuildConfig.FLAVOR == "pro") {
+            navigate(
+                R.id.action_homeFragment_to_repositoryDetailFragment,
+                bundleOf(REPOSITORY_BUNDLE to repository)
+            )
+        } else {
+            setMessage(R.string.this_is_free_version)
+        }
     }
 
 

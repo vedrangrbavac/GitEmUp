@@ -36,4 +36,6 @@
         <item>By updated</item>
     </string-array>
 
+    <string name="this_is_free_version">This is free version and you can not see details</string>
+
 </resources>
