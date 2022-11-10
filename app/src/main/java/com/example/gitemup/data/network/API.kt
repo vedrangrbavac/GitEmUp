@@ -8,5 +8,10 @@ import retrofit2.http.Query
 interface API {
 
     @GET("repositories")
-    suspend fun getRepositories(@Query("q" , encoded = true) query: String) : Response<ResponseWrapper>
+    suspend fun getRepositories(
+        @Query(
+            "q",
+            encoded = true
+        ) query: String
+    ): Response<ResponseWrapper>
 }

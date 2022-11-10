@@ -16,7 +16,7 @@ import com.example.gitemup.repositories.RepositoryRepository
 class RepositoryViewModel(private val repository: RepositoryRepository) : BaseViewModel() {
 
 
-    private val repositories: MutableLiveData<List<Item>?> =
+    val repositories: MutableLiveData<List<Item>?> =
         MutableLiveData(repository.repositories.value)
 
     val queryInput = MutableLiveData<String?>()
@@ -56,7 +56,7 @@ class RepositoryViewModel(private val repository: RepositoryRepository) : BaseVi
         repositories.postValue(repository.getRepositories(query))
     }
 
-    fun callGetRepositories(query: String) {
+    private fun callGetRepositories(query: String) {
         suspendCall {
             getRepositories(query)
         }

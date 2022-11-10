@@ -13,4 +13,4 @@ data class Owner(
     val url: String,
     @SerializedName(value = "avatar_url")
     val avatarUrl: String
-): Parcelable
+) : Parcelable

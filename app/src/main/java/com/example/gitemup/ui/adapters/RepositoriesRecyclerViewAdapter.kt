@@ -11,7 +11,10 @@ import com.example.gitemup.common.base.ItemClickListener
 import com.example.gitemup.data.models.domain.Item
 import com.example.gitemup.databinding.LayoutRepositoryItemBinding
 
-class RepositoriesRecyclerViewAdapter(private val listener: ((Item, Int) -> Unit)? = null, private val sublistener: ((Item, Int) -> Unit)? = null) :
+class RepositoriesRecyclerViewAdapter(
+    private val listener: ((Item, Int) -> Unit)? = null,
+    private val sublistener: ((Item, Int) -> Unit)? = null
+) :
     BaseAdapter<Item, RepositoriesViewHolder>(listener) {
     override val itemLayout: Int = R.layout.layout_repository_item
 
@@ -43,7 +46,12 @@ class RepositoriesViewHolder(view: View) : AbstractViewHolder<Item>(view) {
         // Created new bind function, because I need two click listeners.
     }
 
-    fun bind(model: Item, position: Int, listener: ((Item, Int) -> Unit)? = null, sublistener: ((Item, Int) -> Unit)? = null){
+    fun bind(
+        model: Item,
+        position: Int,
+        listener: ((Item, Int) -> Unit)? = null,
+        sublistener: ((Item, Int) -> Unit)? = null
+    ) {
         binding.repository = model
         binding.executePendingBindings()
 

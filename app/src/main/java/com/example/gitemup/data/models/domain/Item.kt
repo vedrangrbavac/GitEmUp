@@ -23,7 +23,7 @@ data class Item(
     @SerializedName(value = "stargazers_count")
     val numberOfStarts: Int,
     @SerializedName(value = "watchers_count")
-    val numberOfWatchers:Int,
+    val numberOfWatchers: Int,
     @SerializedName(value = "open_issues_count")
     val numberOfIssues: Int,
     @SerializedName(value = "updated_at")
@@ -32,4 +32,4 @@ data class Item(
     val created: Date,
     @SerializedName(value = "pushed_at")
     val lastPush: Date
-): Parcelable
+) : Parcelable

@@ -8,7 +8,10 @@ import java.net.UnknownHostException
 
 object ErrorHandler {
 
-    fun <T> resolveNetworkError(response: Response<T>, customErrorResolver: ErrorResolver? = null): Exception {
+    fun <T> resolveNetworkError(
+        response: Response<T>,
+        customErrorResolver: ErrorResolver? = null
+    ): Exception {
         return customErrorResolver?.let {
             customErrorResolver.resolve(response)
         } ?: DefaultErrorResolver.resolve(response)
@@ -33,17 +36,17 @@ object ErrorHandler {
 
     object DefaultErrorResolver : ErrorResolver {
         override fun <T> resolve(response: Response<T>): Exception =
-                when (response.code()) {
-                    in 500..599 -> ServerError(response.message())
-                    400, 423 -> BadRequestError(response.message())
-                    401 -> UnauthorizedError()
-                    403 -> RateLimitExceeded()
-                    404 -> NotFoundError()
-                    405 -> MethodNotAllowedError()
-                    408 -> TimeoutError()
-                    422 -> WrongFieldError()
-                    else -> Exception(response.message())
-                }
+            when (response.code()) {
+                in 500..599 -> ServerError(response.message())
+                400, 423 -> BadRequestError(response.message())
+                401 -> UnauthorizedError()
+                403 -> RateLimitExceeded()
+                404 -> NotFoundError()
+                405 -> MethodNotAllowedError()
+                408 -> TimeoutError()
+                422 -> WrongFieldError()
+                else -> Exception(response.message())
+            }
     }
 
 
