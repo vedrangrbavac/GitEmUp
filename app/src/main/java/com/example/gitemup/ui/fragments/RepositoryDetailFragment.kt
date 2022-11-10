@@ -44,6 +44,11 @@ class RepositoryDetailFragment : Fragment() {
         }
 
         initListeners()
+
+        binding.ivThumbnailOfAuthor.animate().apply {
+            duration = 2000
+            rotationYBy(720f)
+        }
     }
 
     private fun initListeners() {

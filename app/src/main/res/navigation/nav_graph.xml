@@ -10,7 +10,8 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_repositoryDetailFragment"
-            app:destination="@id/repositoryDetailFragment" />
+            app:destination="@id/repositoryDetailFragment"
+            app:enterAnim="@anim/from_right" />
     </fragment>
     <fragment
         android:id="@+id/repositoryDetailFragment"
