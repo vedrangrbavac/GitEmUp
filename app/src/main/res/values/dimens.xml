@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">12dp</dimen>
+    <dimen name="padding_default">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_extra_large">32dp</dimen>
+
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_medium">12sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_extra_large">24sp</dimen>
+    <dimen name="text_size_super_large">32sp</dimen>
+
+
+    <dimen name="radius_button">10dp</dimen>
+
+</resources>

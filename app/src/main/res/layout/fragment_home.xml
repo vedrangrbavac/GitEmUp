@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.gitemup.viewmodels.RepositoryViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.HomeFragment">
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etQuery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/insert_query"
+            android:padding="@dimen/padding_small"
+            android:text="@={viewModel.queryInput}"
+            app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSearch"
+            style="@style/appButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:onClick="@{(v) -> viewModel.onClick(v)}"
+            android:text="@string/search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/search_repositories"
+            android:padding="@dimen/padding_small"
+            android:text="@={viewModel.searchInput}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:selectedItemPosition="@={viewModel.selectedItemPosition}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etFilter" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/clRepositoriesEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.searchedData.size() == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spSort"
+            tools:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/please_enter_valid_query"
+                android:textColor="@color/quick_silver_color" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRepositories"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.searchedData.size() == 0 ? View.GONE : View.VISIBLE}"
+            android:layout_marginTop="16dp"
+            app:items="@{viewModel.searchedData}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spSort" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
